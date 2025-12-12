@@ -1,75 +1,195 @@
 <!DOCTYPE html>
-</section>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ritchie229 — Homelab & DevOps Portfolio</title>
+  <style>
+    /* Modern dark theme — компактно и читабельно */
+    :root{
+      --bg-1:#071023; --bg-2:#081426;
+      --card:#0b1220; --muted:#9aa6b2; --accent:#5eead4; --accent-2:#60a5fa; --text:#e6eef6;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,system-ui,Arial,-apple-system;line-height:1.45;background:linear-gradient(180deg,var(--bg-1) 0%,var(--bg-2) 70%);color:var(--text);-webkit-font-smoothing:antialiased}
 
+    .wrap{max-width:1150px;margin:28px auto;padding:20px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:18px}
+    h1{margin:0;font-size:1.6rem}
+    .sub{color:var(--muted);font-size:0.95rem}
 
-<section class="card" id="screenshots">
-<h2>Screenshots (placeholders)</h2>
-<p class="muted">Add actual screenshots here (ArgoCD, Jenkins, Grafana, diagram). For PR include at least two screenshots showing DevOps context.</p>
-<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-<div style="width:220px;height:120px;background:#021020;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#9aa6b2">ArgoCD</div>
-<div style="width:220px;height:120px;background:#021020;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#9aa6b2">Jenkins</div>
-</div>
-</section>
+    .hero{display:flex;gap:18px;align-items:center;margin-top:18px}
+    .logo{width:88px;height:88px;border-radius:16px;background:linear-gradient(135deg,#071423,#0b2540);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:28px;box-shadow:0 6px 18px rgba(5,12,22,0.6)}
 
+    main{margin-top:18px;padding:22px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)}
 
-<section class="card" id="how-to-deploy">
-<h2>Deploy & Notes for maintainers</h2>
-<p class="muted">If you are a maintainer evaluating this PR — root domain will only serve as portfolio. All self-hosted services will be at nested subdomains. I confirm non-commercial use.</p>
-<h3>Recommended domain JSON (for is-a.dev)</h3>
-<pre>{
-"description": "Personal homelab and DevOps portfolio: Kubernetes, ArgoCD, Jenkins, Grafana, Docker, self-hosted apps.",
-"owner": {"username": "ritchie229", "email": "rishat.mukhtarov@gmail.com"},
-"records": { "CNAME": "ritchie229.github.io" }
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .col{padding:6px}
+    section{margin-bottom:16px}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:16px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(3,7,18,0.6)}
+
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .p-title{font-weight:600;margin-bottom:6px}
+    .muted{color:var(--muted);font-size:0.95rem}
+
+    pre{background:#020617;padding:12px;border-radius:8px;overflow:auto;color:#cbd5e1}
+
+    .links a{color:var(--accent);text-decoration:none;font-weight:600}
+    .quick-link {display:flex;align-items:center;gap:8px}
+
+    footer{margin-top:18px;color:var(--muted);font-size:0.9rem;text-align:center}
+
+    /* badges */
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021224;font-weight:700;font-size:0.85rem}
+
+    /* responsive */
+    @media(max-width:1100px){.grid{grid-template-columns:1fr 320px}}
+    @media(max-width:880px){.grid{grid-template-columns:1fr}.logo{width:72px;height:72px}}
+
+    /* subtle list style */
+    ul{padding-left:18px;margin:8px 0}
+    li{margin:6px 0}
+
+    /* small helper for screenshots */
+    .screenshot{background:#061226;border-radius:10px;padding:10px;color:var(--muted);display:flex;align-items:center;justify-content:center;height:120px}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>ritchie229 — Homelab & DevOps portfolio <span class="badge">homelab.int.eu.org (candidate)</span></h1>
+        <div class="sub">Kubernetes • ArgoCD • Jenkins • CI/CD • Monitoring • self-hosting</div>
+      </div>
+      <div class="links">
+        <a href="https://github.com/ritchie229" target="_blank">GitHub</a>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="logo">R</div>
+      <div>
+        <div class="muted">Personal homelab, experiments and documentation for my projects.</div>
+        <div style="margin-top:8px">This site is the canonical portfolio for my software/devops work — root domain for is-a.dev / EU.org requests. All services run on nested subdomains.</div>
+      </div>
+    </div>
+
+    <main>
+      <div class="grid">
+        <div class="col">
+          <section class="card" id="about">
+            <h2>About this homelab</h2>
+            <p class="muted">This repository serves as a portfolio and documentation hub for my homelab: deployment manifests, CI pipelines, monitoring dashboards and demo applications. Everything is strictly non-commercial and intended for learning & experimentation.</p>
+            <ul>
+              <li>Stack: Docker, Kubernetes (minikube), ArgoCD, Jenkins, Prometheus/Grafana</li>
+              <li>Networking: Cloudflare Tunnel for external access, NodePort for local dev, iptables DNAT for bridging</li>
+              <li>Registry: GHCR (GitHub Container Registry)</li>
+            </ul>
+          </section>
+
+          <section class="card" id="projects">
+            <h2>Projects & Services</h2>
+            <div class="projects">
+              <div class="card">
+                <div class="p-title">Demo Flask App</div>
+                <div class="muted">Realtime coffee-ordering app (Flask + Socket.IO). Repo & container images linked on GitHub.</div>
+              </div>
+
+              <div class="card">
+                <div class="p-title">CI/CD: Jenkins + ArgoCD</div>
+                <div class="muted">Jenkins builds images and updates manifests → ArgoCD syncs to cluster.</div>
+              </div>
+
+              <div class="card">
+                <div class="p-title">Monitoring</div>
+                <div class="muted">Prometheus server + Alertmanager + Grafana dashboards for cluster & router metrics.</div>
+              </div>
+
+              <div class="card">
+                <div class="p-title">Kubernetes manifests</div>
+                <div class="muted">Kustomize base + overlays for minikube/production, demonstrated with demo app.</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" id="architecture">
+            <h2>Architecture (summary)</h2>
+            <p class="muted">High-level: CI builds → GHCR → manifests repo → ArgoCD → minikube. External access provided by Cloudflare Tunnel which proxies hostnames to local ports or to external URLs (hub page).</p>
+            <p><strong>How subdomains are used:</strong></p>
+            <ul>
+              <li><code>homelab.int.eu.org</code> — hub (this site)</li>
+              <li><code>jenkins.homelab.int.eu.org</code> — Jenkins (baremetal)</li>
+              <li><code>grafana.homelab.int.eu.org</code> — Grafana (Docker)</li>
+              <li><code>k8s-*</code> — NodePort-mapped K8s services via DNAT</li>
+            </ul>
+          </section>
+
+          <section class="card" id="screenshots">
+            <h2>Screenshots (placeholders)</h2>
+            <p class="muted">Add actual screenshots here (ArgoCD, Jenkins, Grafana, diagram). For PR include at least two screenshots showing DevOps context.</p>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+              <div class="screenshot">ArgoCD</div>
+              <div class="screenshot">Jenkins</div>
+            </div>
+          </section>
+
+          <section class="card" id="how-to-deploy">
+            <h2>Deploy & Notes for maintainers</h2>
+            <p class="muted">If you are a maintainer evaluating this PR — root domain will only serve as portfolio. All self-hosted services will be at nested subdomains. I confirm non-commercial use.</p>
+            <h3>Recommended domain JSON (for is-a.dev)</h3>
+            <pre>{
+  "description": "Personal homelab and DevOps portfolio: Kubernetes, ArgoCD, Jenkins, Grafana, Docker, self-hosted apps.",
+  "owner": {"username": "ritchie229", "email": "rishat.mukhtarov@gmail.com"},
+  "records": { "CNAME": "ritchie229.github.io" }
 }</pre>
 
-
-<h3>PR description (copy-paste)</h3>
-<pre>This is my personal DevOps portfolio site (Kubernetes, ArgoCD, Jenkins, Docker, monitoring, homelab setup).
+            <h3>PR description (copy-paste)</h3>
+            <pre>This is my personal DevOps portfolio site (Kubernetes, ArgoCD, Jenkins, Docker, monitoring, homelab setup).
 Root site will only serve the portfolio; all self-hosted projects will be placed on nested subdomains such as jenkins.homelab.int.eu.org, grafana.homelab.int.eu.org, etc.
 Website: https://ritchie229.github.io
 Non-commercial: yes
 </pre>
 
+          </section>
+        </div>
 
-</section>
-</div>
+        <aside class="col">
+          <div class="card">
+            <h3>Quick links</h3>
+            <ul class="muted">
+              <li class="quick-link">GH: <a href="https://github.com/ritchie229" target="_blank">github.com/ritchie229</a></li>
+              <li class="quick-link">Manifests repo: <span id="manifests">argocd-jenkins-k8s-cicd</span></li>
+              <li class="quick-link">Registry: GHCR</li>
+            </ul>
+          </div>
 
+          <div class="card" style="margin-top:12px">
+            <h3>Contact</h3>
+            <div class="muted">rishat.mukhtarov@gmail.com</div>
+            <div style="margin-top:8px;color:var(--muted)">PR ready: labops.json → CNAME to GitHub Pages. Nested services will be on subdomains.</div>
+          </div>
 
-<aside class="col">
-<div class="card">
-<h3>Quick links</h3>
-<ul class="muted">
-<li>GH: <a href="https://github.com/ritchie229" target="_blank">github.com/ritchie229</a></li>
-<li>Manifests repo: <span id="manifests">argocd-jenkins-k8s-cicd</span></li>
-<li>Registry: GHCR</li>
-</ul>
-</div>
+          <div class="card" style="margin-top:12px">
+            <h3>Checklist for is-a.dev</h3>
+            <ol class="muted">
+              <li>Site reachable and dev-related (this page)</li>
+              <li>Non-commercial confirmation</li>
+              <li>Nested services will be on subdomains</li>
+              <li>Use CNAME record in JSON, not NS</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
 
-
-<div class="card" style="margin-top:12px">
-<h3>Contact</h3>
-<div class="muted">rishat.mukhtarov@gmail.com</div>
-<div style="margin-top:8px;color:var(--muted)">PR ready: labops.json → CNAME to GitHub Pages. Nested services will be on subdomains.</div>
-</div>
-
-
-<div class="card" style="margin-top:12px">
-<h3>Checklist for is-a.dev</h3>
-<ol class="muted">
-<li>Site reachable and dev-related (this page)</li>
-<li>Non-commercial confirmation</li>
-<li>Nested services will be on subdomains</li>
-<li>Use CNAME record in JSON, not NS</li>
-</ol>
-</div>
-</aside>
-</div>
-
-
-<footer>
-<div class="muted">If you need a tailored PR file or screenshots packaged for review — tell me and I'll prepare them immediately.</div>
-</footer>
-</main>
-</div>
+      <footer>
+        <div class="muted">If you need a tailored PR file or screenshots packaged for review — tell me and I'll prepare them immediately.</div>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
+
